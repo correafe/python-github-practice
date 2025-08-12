@@ -130,8 +130,11 @@
 #fatiamento de str e função len
 # variavel = 'felipe'
 # print(variavel[0:6:4])
+# print(variavel[0:2:4])
+# print(variavel[0:10:2])
 # print(variavel[::-1]) #inverte
 # print(variavel[4:])
+# print(variavel[2:])
 # print(len(variavel))
 
 """
@@ -309,4 +312,101 @@ Se nada for digitado em nome ou idade:
 #     if sair is True:
 #         break
 
+#exercício
+# frase = 'felipe'
+# i = 0
+# qtd_apareceu_mais_vezes = 0
+# letra_apareceu_mais_vezes = ''
+# while i < len(frase):
+#     letra_atual = frase[i]
+#     if letra_atual == ' ':
+#         i += 1
+#         continue
+#     qtd_apareceu_mais_vezes_atual = frase.count(letra_atual)
+#     if qtd_apareceu_mais_vezes < qtd_apareceu_mais_vezes_atual:
+#         qtd_apareceu_mais_vezes = qtd_apareceu_mais_vezes_atual
+#         letra_apareceu_mais_vezes = letra_atual
+#     i += 1
+# print(
+#     'A letra que apareceu mais vezes foi '
+#     f'"{letra_apareceu_mais_vezes}" que apareceu '
+#     f'{qtd_apareceu_mais_vezes}x'
+# )
 
+#for
+# texto = 'pytohn'
+# novotexto = ''
+# for letra in texto:
+#     novotexto += f'*{letra}' 
+#     print(letra)
+# print(novotexto)
+
+#range(start, stop, step)
+# numeros = range(5, 19, 2)
+# for numero in numeros:
+#     print(numero)
+
+"""
+Faça um jogo para o usuário adivinhar qual
+a palavra secreta.
+- Você vai propor uma palavra secreta
+qualquer e vai dar a possibilidade para
+o usuário digitar apenas uma letra.
+- Quando o usuário digitar uma letra, você 
+vai conferir se a letra digitada está
+na palavra secreta.
+    - Se a letra digitada estiver na
+    palavra secreta; exiba a letra;
+    - Se a letra digitada não estiver
+    na palavra secreta; exiba *.
+Faça a contagem de tentativas do seu
+usuário.
+"""
+# import os
+# palavra_secreta = 'perfume'
+# letras_acertadas = ''
+# numero_tentativas = 0
+# while True:
+#     letra_digitada = input('Digite uma letra: ')
+#     numero_tentativas += 1
+
+#     if len(letra_digitada) > 1:
+#         print('Digite apenas uma letra.')
+#         continue
+#     if letra_digitada in palavra_secreta:
+#         letras_acertadas += letra_digitada
+#     palavra_formada = ''
+#     for letra_secreta in palavra_secreta:
+#         if letra_secreta in letras_acertadas:
+#             palavra_formada += letra_secreta
+#         else:
+#             palavra_formada += '*'
+#     print('Palavra formada:', palavra_formada)
+#     if palavra_formada == palavra_secreta:
+#         os.system('clear')
+#         print('VOCÊ GANHOU!! PARABÉNS!')
+#         print('A palavra era', palavra_secreta)
+#         print('Tentativas:', numero_tentativas)
+#         letras_acertadas = ''
+#         numero_tentativas = 0
+
+#list
+# string = 'dfgbn'
+# lista = [112, 'felipe', 1.5, True, 'tadodio', []]
+# lista[0] = 'felipe'
+# del lista[3]
+# print(lista, lista[3])
+# lista.append(50)
+# print(lista)
+# lista.pop()
+# print(lista)
+lista1 = [112, 'felipe', 1.5, True, 'tadodio', []]
+# print(lista)
+# # print(lista.clear())
+# lista.insert(0,5)
+# print(lista)
+lista2 = [1, 2, 4, 'felipe']
+lista1.extend(lista2)
+lista3 = lista1 + lista2
+print(lista3)
+print(lista1)
