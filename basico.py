@@ -400,13 +400,76 @@ usuário.
 # print(lista)
 # lista.pop()
 # print(lista)
-lista1 = [112, 'felipe', 1.5, True, 'tadodio', []]
+# lista1 = [112, 'felipe', 1.5, True, 'tadodio', []]
 # print(lista)
 # # print(lista.clear())
 # lista.insert(0,5)
 # print(lista)
-lista2 = [1, 2, 4, 'felipe']
-lista1.extend(lista2)
-lista3 = lista1 + lista2
-print(lista3)
-print(lista1)
+# lista2 = [1, 2, 4, 'felipe']
+# lista1.extend(lista2)
+# lista3 = lista1 + lista2
+# print(lista3)
+# print(lista1)
+# lista2 = lista1.copy()
+# print(lista2)
+
+#exercício
+# lista = ['Maria', 'Helena', 'Luiz', 123]
+# lista.append('João')
+# indices = range(len(lista))
+# for indice in indices:
+#     print(indice, lista[indice], type(lista[indice]))
+
+#empacotamento e desempacotamento
+# lista = ['Maria', 'Helena', 'Luiz', 123]
+# nome1, *_ = ['Maria', 'Helena', 'Luiz', 123]
+# nome1, nome2, nome3, nome4= lista
+# print(nome2)
+
+#tuplas
+# tupla = 'Maria', 'Helena', 'Luiz', 123
+# tupla = ('Maria', 'Helena', 'Luiz', 123)
+# tupla[2] = 345
+# print(tupla)
+
+#enumerate, enumera iteráveis (índices)
+# lista = ['Maria', 'Helena', 'Luiz', 123]
+# # listaemunerada = enumerate(lista)
+# for nome in enumerate(lista):
+#     indice, nomes = nome
+#     print(indice, nomes)
+# for indice, nome in enumerate(lista):
+#     print(indice, nome)
+# # print(listaemunerada)
+
+#exercicio
+"""
+Faça uma lista de comprar com listas
+O usuário deve ter a possibilidade de
+inserir, apagar e listar valores da sua lista
+Não permita que o programa quebre com 
+erros de índices inexistentes na lista.
+"""
+listacompras = []
+while True:
+    print()
+    print('selecione uma opção')
+    escolha = input('[i]nserir [a]pagar [l]istar ')
+    if escolha == 'i':
+        valor = input('valor: ')
+        listacompras.append(valor)
+
+    elif escolha == 'a':
+        try:
+            indice = input('escolha o indice a apagar: ')
+            indiceint = int(indice)
+            del listacompras[indiceint]
+        except:
+            print('não existe esse índice')
+
+    elif escolha == 'l':
+        for indice, nome in enumerate(listacompras):
+            print(indice, nome)
+
+    else: 
+        print('vc não digitou uma opção válida')
