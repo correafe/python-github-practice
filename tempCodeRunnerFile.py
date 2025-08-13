@@ -1,8 +1,6 @@
-
-while True:
-    print('selecione uma opção')
-    escolha = input('[i]nserir [a]pagar [l]istar ')
-    if escolha == 'i':
-        valor = input('valor: ')
-        listacompras.append(valor)
-        print(listacompras)
+for numero in cpf:
+#     numeroint = int(numero)
+#     while multiplicador > 2:
+#         multiplicador -= 1
+#         calculo = numeroint * multiplicador
+#         print(calculo)

@@ -450,26 +450,133 @@ inserir, apagar e listar valores da sua lista
 Não permita que o programa quebre com 
 erros de índices inexistentes na lista.
 """
-listacompras = []
-while True:
-    print()
-    print('selecione uma opção')
-    escolha = input('[i]nserir [a]pagar [l]istar ')
-    if escolha == 'i':
-        valor = input('valor: ')
-        listacompras.append(valor)
+# import os
+# listacompras = []
 
-    elif escolha == 'a':
-        try:
-            indice = input('escolha o indice a apagar: ')
-            indiceint = int(indice)
-            del listacompras[indiceint]
-        except:
-            print('não existe esse índice')
+# while True:
+#     print('selecione uma opção:')
+#     escolha = input('[i]nserir [a]pagar [l]istar ')
 
-    elif escolha == 'l':
-        for indice, nome in enumerate(listacompras):
-            print(indice, nome)
+#     if escolha == 'i':
+#         os.system('cls')
+#         valor = input('valor: ')
+#         listacompras.append(valor)
 
-    else: 
-        print('vc não digitou uma opção válida')
+#     elif escolha == 'a':
+#         try:
+#             indice = input('escolha o indice a apagar: ')
+#             indiceint = int(indice)
+#             del listacompras[indiceint]
+#         except:
+#             print('não existe esse índice')
+
+#     elif escolha == 'l':
+#         os.system('cls')
+#         if listacompras == '':
+#             print('não há itens na lista')
+#         for indice, nome in enumerate(listacompras):
+#             print(indice, nome)
+
+#     else: 
+#         print('vc não digitou uma opção válida')
+
+#round e decimal
+# import decimal
+# numero_1 = decimal.Decimal('0.1')
+# numero_2 = decimal.Decimal('0.7')
+# numero_3 = numero_1 + numero_2
+# print(numero_3)
+# print(f'{numero_3:.2f}')
+# print(round(numero_3, 2))
+
+#split e join, divide e une string, strip
+# frase = 'felipe   felipe  , dois felipes, felipe  '
+# print(frase)
+# novafrase = frase.split(',')
+# print(novafrase)
+# lista = []
+# # for i, frase in enumerate(frase):
+# #     print(novafrase[i].strip())
+# for i, frase in enumerate(novafrase):
+#     lista.append(novafrase[i].strip())
+# print(frase)
+# print(lista)
+# frasesunidas = '-'.join('lista')
+# print(frasesunidas)
+
+#lista de lista
+# lista = [['felipe', 'fghjk', 123], ['ghjkl', 67890, 'ghjk', (6, 7, 8)], [345, 'fghk']]
+# print(lista[1][3][0])
+# for item in lista:
+#     print(item)
+#     for item2 in item:
+#         print(item2)
+#         for item3 in item2:
+#             print(item3)
+
+#desempacotando em chamada de função
+# lista = ['felipe', 'guilherme', 123, 'eu']
+# nome = 'felipe'
+# print(*nome)
+# print(*lista)
+# print(*lista, sep='\n')
+
+#operação ternária
+# digito = 10
+# novodigito = 3 if digito > 7 else digito 
+# print(novodigito)
+
+"""
+Calculo do primeiro dígito do CPF
+CPF: 746.824.890-70
+Colete a soma dos 9 primeiros dígitos do CPF
+multiplicando cada um dos valores por uma
+contagem regressiva começando de 10
+
+Ex.:  746.824.890-70 (746824890)
+   10  9  8  7  6  5  4  3  2
+*  7   4  6  8  2  4  8  9  0
+   70  36 48 56 12 20 32 27 0
+
+Somar todos os resultados: 
+70+36+48+56+12+20+32+27+0 = 301
+Multiplicar o resultado anterior por 10
+301 * 10 = 3010
+Obter o resto da divisão da conta anterior por 11
+3010 % 11 = 7
+Se o resultado anterior for maior que 9:
+    resultado é 0
+contrário disso:
+    resultado é o valor da conta
+
+O primeiro dígito do CPF é 7
+"""
+# o que eu comecei a fazer:
+# cpf = '746824890'
+# multiplicador = 11
+# indice = -1
+# soma = 0
+# while indice < 9:
+#     while multiplicador > 2:
+#         multiplicador -= 1
+#         indice += 1
+#         numero = cpf[indice]
+#         intnumero = int(numero)
+#         soma += intnumero * multiplicador
+#         soma2 = (soma * 10) % 11
+#         soma2 = soma2 if soma2 <= 9 else 0
+#         print(soma2)
+
+#o que era
+# cpf = '74682489070'
+# nove_digitos = cpf[:9]
+# contador_regressivo_1 = 10
+
+# resultado_digito_1 = 0
+# for digito_1 in nove_digitos:
+#     resultado_digito_1 += int(digito_1) * contador_regressivo_1
+#     contador_regressivo_1 -= 1
+# digito_1 = (resultado_digito_1 * 10) % 11
+# digito_1 = digito_1 if digito_1 <= 9 else 0
+# print(digito_1)
+
