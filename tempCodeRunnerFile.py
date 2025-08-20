@@ -1,6 +1,5 @@
-for numero in cpf:
-#     numeroint = int(numero)
-#     while multiplicador > 2:
-#         multiplicador -= 1
-#         calculo = numeroint * multiplicador
-#         print(calculo)
+as[0])
+# resposta1 = input('qual a resposta')
+# for item in perguntas[0]:
+#     if resposta1 == perguntas['Respostas']:
+#         print('acertou')
