@@ -545,3 +545,293 @@ Requisitos:
 #     for x in range(3)
 # ]
 # print(lista)
+
+#dictionay e set comprehension
+# produto = {
+#     'nome': 'Caneta Azul',
+#     'preco': 2.5,
+#     'categoria': 'Escritório',
+# }
+# dc = {
+#     chave: valor.upper()
+#     if isinstance(valor, str) else valor
+#     for chave, valor
+#     in produto.items()
+#     if chave != 'categoria'
+# }
+# lista = [
+#     ('a', 'valor a'),
+#     ('b', 'valor a'),
+#     ('b', 'valor a'),
+# ]
+# dc = {
+#     chave: valor
+#     for chave, valor in lista
+# }
+# s1 = {2 ** i for i in range(10)}
+# print(s1)
+
+#isintance, verificar tipo
+# lista = [
+#     'a', 1, 1.1, True, [0, 1, 2], (1, 2),
+#     {0, 1}, {'nome': 'Luiz'},
+# ]
+# for item in lista:
+#     if isinstance(item, set):
+#         print('SET')
+#         item.add(5)
+#         print(item, isinstance(item, set))
+#     elif isinstance(item, str):
+#         print('STR')
+#         print(item.upper())
+#     elif isinstance(item, (int, float)):
+#         print('NUM')
+#         print(item, item * 2)
+#     else:
+#         print('OUTRO')
+#         print(item)
+
+#truthy falsy
+# lista = []
+# dicionario = {}
+# conjunto = set()
+# tupla = ()
+# string = ''
+# inteito = 0
+# flutuante = 0.0
+# nada = None
+# falso = False
+# intervalo = range(0)
+# def falsy(valor):
+#     return 'falsy'if not valor else 'truthy'
+# print(f'TESTE', falsy('TESTE'))
+# print(f'{lista=}', falsy(lista))
+# print(f'{dicionario=}', falsy(dicionario))
+# print(f'{conjunto=}', falsy(conjunto))
+# print(f'{tupla=}', falsy(tupla))
+# print(f'{string=}', falsy(string))
+# print(f'{inteito=}', falsy(inteito))
+# print(f'{flutuante=}', falsy(flutuante))
+# print(f'{nada=}', falsy(nada))
+# print(f'{falso=}', falsy(falso))
+# print(f'{intervalo=}', falsy(intervalo))
+
+# dir, hasattr e getattr
+# string = 'Luiz'
+# metodo = 'strip'
+# if hasattr(string, metodo):
+#     print('Existe upper')
+#     print(getattr(string, metodo)())
+# else:
+#     print('Não existe o método', metodo)
+
+# Generator expression, Iterables e Iterators
+# import sys
+# iterable = ['Eu', 'Tenho', '__iter__']
+# iterator = iter(iterable)  # tem __iter__ e __next__
+# lista = [n for n in range(1000000)]
+# generator = (n for n in range(1000000))
+# print(sys.getsizeof(lista))
+# print(sys.getsizeof(generator))
+# print(generator)
+# for n in generator:
+#     print(n)
+
+#Generator functions
+# generator = (n for n in range(1000000))
+# def generator(n=0, maximum=10):
+#     while True:
+#         yield n
+#         n += 1
+#         if n >= maximum:
+#             return
+# gen = generator(maximum=1000000)
+# for n in gen:
+#     print(n)
+# def gen1():
+#     print('COMECOU GEN1')
+#     yield 1
+#     yield 2
+#     yield 3
+#     print('ACABOU GEN1')
+# def gen3():
+#     print('COMECOU GEN3')
+#     yield 10
+#     yield 20
+#     yield 30
+#     print('ACABOU GEN3')
+# def gen2(gen=None):
+#     print('COMECOU GEN2')
+#     if gen is not None:
+#         yield from gen
+#     yield 4
+#     yield 5
+#     yield 6
+#     print('ACABOU GEN2')
+# g1 = gen2(gen1())
+# g2 = gen2(gen3())
+# g3 = gen2()
+# for numero in g1:
+#     print(numero)
+# print()
+# for numero in g2:
+#     print(numero)
+# print()
+# for numero in g3:
+#     print(numero)
+# print()
+
+#try exception 
+# a = 18
+# b = 0
+# c = a / b
+# try:
+#     a = 18
+#     b = 0
+#     # print(b[0])
+#     print('Linha 1'[1000])
+#     c = a / b
+#     print('Linha 2')
+# except ZeroDivisionError:
+#     print('Dividiu por zero.')
+# except NameError:
+#     print('Nome b não está definido')
+# except (TypeError, IndexError):
+#     print('TypeError + IndexError')
+# except Exception:
+#     print('ERRO DESCONHECIDO.')
+# print('CONTINUAR')
+# try:
+#     a = 18
+#     b = 0
+#     # print(b[0])
+#     # print('Linha 1'[1000])
+#     c = a / b
+#     print('Linha 2')
+# except ZeroDivisionError as e:
+#     print(e.__class__.__name__)
+#     print(e)
+# except NameError:
+#     print('Nome b não está definido')
+# except (TypeError, IndexError) as error:
+#     print('TypeError + IndexError')
+#     print('MSG:', error)
+#     print('Nome:', error.__class__.__name__)
+# except Exception:
+#     print('ERRO DESCONHECIDO.')
+# print('CONTINUAR')
+
+# try, except, else e finally
+# try:
+#     print('ABRIR ARQUIVO')
+#     8/0
+# except ZeroDivisionError as e:
+#     print(e.__class__.__name__)
+#     print(e)
+#     print('DIVIDIU ZERO')
+# except IndexError as error:
+#     print('IndexError')
+# except (NameError, ImportError):
+#     print('NameError, ImportError')
+# else:
+#     print('Não deu erro')
+# finally:
+#     print('FECHAR ARQUIVO')
+
+# raise - lançando exceções (erros)
+# def nao_aceito_zero(d):
+#     if d == 0:
+#         raise ZeroDivisionError('Você está tentando dividir por zero')
+#     return True
+# def deve_ser_int_ou_float(n):
+#     tipo_n = type(n)
+#     if not isinstance(n, (float, int)):
+#         raise TypeError(
+#             f'"{n}" deve ser int ou float. '
+#             f'"{tipo_n.__name__}" enviado.'
+#         )
+#     return True
+# def divide(n, d):
+#     deve_ser_int_ou_float(n)
+#     deve_ser_int_ou_float(d)
+#     nao_aceito_zero(d)
+#     return n / d
+# print(divide(8, '0'))
+
+# import, from, as e *
+# inteiro - import nome_modulo
+# Vantagens: você tem o namespace do módulo
+# Desvantagens: nomes grandes
+# import sys
+# platform = 'A MINHA'
+# print(sys.platform)
+# print(platform)
+# partes - from nome_modulo import objeto1, objeto2
+# Vantagens: nomes pequenos
+# Desvantagens: Sem o namespace do módulo
+# from sys import exit, platform
+# print(platform)
+# alias 1 - import nome_modulo as apelido
+# import sys as s
+# sys = 'alguma coisa'
+# print(s.platform)
+# print(sys)
+# alias 2 - from nome_modulo import objeto as apelido
+# from sys import exit as ex
+# from sys import platform as pf
+# print(pf)
+# Vantagens: você pode reservar nomes para seu código
+# Desvantagens: pode ficar fora do padrão da linguagem
+# má prática - from nome_modulo import *
+# Vantagens: importa tudo de um módulo
+# Desvantagens: importa tudo de um módulo
+# from sys import exit, platform
+# print(platform)
+# exit()
+
+# #módulos
+# import testemodulo
+# print('Este módulo se chama', __name__)
+# import testemodulo
+# from testemodulo import soma, variavel_modulo
+# print('Este módulo se chama', __name__)
+# # print('Este módulo se chama', __name__)
+# print(testemodulo.variavel_modulo)
+# print(variavel_modulo)
+# print(soma(2, 3))
+# print(testemodulo.soma(2, 3))
+
+# import importlib
+# import testemodulo
+# print(testemodulo.variavel)
+# for i in range(10):
+#     importlib.reload(testemodulo)
+#     print(i)
+# print('Fim')
+
+# from sys import path
+# # from sys import path
+# import testepackages.modulo
+# from testepackages import modulo
+# from testepackages.modulo import *
+# # import testepackages.modulo
+# # from testepackages import modulo
+# # from testepackages.modulo import *
+# # from testepackages.modulo import soma_do_modulo
+# # # from testepackages.modulo import soma_do_modulo
+# # print(*path, sep='\n')
+# print(soma_do_modulo(1, 2))
+# print(testepackages.modulo.soma_do_modulo(1, 2))
+# print(modulo.soma_do_modulo(1, 2))
+# print(variavel)
+# print(nova_variavel)
+# # # print(*path, sep='\n')
+# # print(soma_do_modulo(1, 2))
+# # print(testepackages.modulo.soma_do_modulo(1, 2))
+# # print(modulo.soma_do_modulo(1, 2))
+# # print(variavel)
+# # print(nova_variavel)
+# from testepackages.modulo import fala_oi, soma_do_modulo
+# print(__name__)
+# fala_oi()
+
