@@ -835,3 +835,151 @@ Requisitos:
 # print(__name__)
 # fala_oi()
 
+# Exercícios
+# Aumente os preços dos produtos a seguir em 10%
+# Gere novos_produtos por deep copy (cópia profunda)
+# produtos = [
+#     {'nome': 'Produto 5', 'preco': 10.00},
+#     {'nome': 'Produto 1', 'preco': 22.32},
+#     {'nome': 'Produto 3', 'preco': 10.11},
+#     {'nome': 'Produto 2', 'preco': 105.87},
+#     {'nome': 'Produto 4', 'preco': 69.90},
+# ]
+# Ordene os produtos por nome decrescente (do maior para menor)
+# Gere produtos_ordenados_por_nome por deep copy (cópia profunda)
+# Ordene os produtos por preco crescente (do menor para maior)
+# Gere produtos_ordenados_por_preco por deep copy (cópia profunda)
+
+# #como eu fiz:
+# novos_produtos = [
+#     {**produto, 'preco': produto['preco'] * 1.10}
+#     for produto in produtos
+# ]
+# print(*novos_produtos, sep='\n')
+# produtos_ordenados_por_nome = sorted(produtos, key=lambda item: item['nome'], reverse=True)
+# print(produtos_ordenados_por_nome)
+# produtos_ordenados_por_preco = sorted(produtos, key=lambda item: item['preco'])
+# print(produtos_ordenados_por_preco)
+
+#como era:
+# import copy
+# produtos = [
+#     {'nome': 'Produto 5', 'preco': 10.00},
+#     {'nome': 'Produto 1', 'preco': 22.32},
+#     {'nome': 'Produto 3', 'preco': 10.11},
+#     {'nome': 'Produto 2', 'preco': 105.87},
+#     {'nome': 'Produto 4', 'preco': 69.90},
+# ]
+# novos_produtos = [
+#     {**p, 'preco': round(p['preco'] * 1.1, 2)}
+#     for p in copy.deepcopy(produtos)
+# ]
+# produtos_ordenados_por_nome = sorted(
+#     copy.deepcopy(produtos),
+#     key=lambda p: p['nome'],
+#     reverse=True
+# )
+# produtos_ordenados_por_preco = sorted(
+#     copy.deepcopy(produtos),
+#     key=lambda p: p['preco']
+# )
+# print(*produtos, sep='\n')
+# print()
+# print(*novos_produtos, sep='\n')
+# print()
+# print(*produtos_ordenados_por_nome, sep='\n')
+# print()
+# print(*produtos_ordenados_por_preco, sep='\n')
+
+# Exercício - Adiando execução de funções
+# def soma(x, y):
+#     return x + y
+# def multiplica(x, y):
+#     return x * y
+# def criar_funcao(funcao, x):
+#     def interna(y):
+#         return funcao(x, y)
+#     return interna
+# soma_com_cinco = criar_funcao(soma, 5)
+# multiplica_por_dez = criar_funcao(multiplica, 10)
+# print(soma_com_cinco(10))
+# print(multiplica_por_dez(10))
+
+#variaveis livre e nonlocal
+# def concatenar(string_inicial):
+#     valor_final = string_inicial
+
+#     def interna(valor_a_concatenar=''):
+#         nonlocal valor_final
+#         valor_final += valor_a_concatenar
+#         return valor_final
+#     return interna
+# c = concatenar('a')
+# print(c('b'))
+# print(c('c'))
+# print(c('d'))
+# final = c()
+# print(final)
+
+# Funções decoradoras e decoradores
+# Decorar = Adicionar / Remover/ Restringir / Alterar
+# Funções decoradoras são funções que decoram outras funções
+# Decoradores são usados para fazer o Python
+# usar as funções decoradoras em outras funções.
+# Decoradores são "Syntax Sugar" (Açúcar sintático)
+# def criar_funcao(func):
+#     def interna(*args, **kwargs):
+#         print('Vou te decorar')
+#         for arg in args:
+#             e_string(arg)
+#         resultado = func(*args, **kwargs)
+#         print(f'O seu resultado foi {resultado}.')
+#         print('Ok, agora você foi decorada')
+#         return resultado
+#     return interna
+# @criar_funcao #açucar sintatico, chama função para outra função
+# def inverte_string(string):
+#     print(f'{inverte_string.__name__}')
+#     return string[::-1]
+# def e_string(param):
+#     if not isinstance(param, str):
+#         raise TypeError('param deve ser uma string')
+# invertida = inverte_string('123')
+# print(invertida)
+
+#sem decorador seria:
+# def inverte_string(string):
+#     return string[::-1]
+# def e_string(param):
+#     if not isinstance(param, str):
+#         raise TypeError('param deve ser uma string')
+# inverte_string_checando_parametro = criar_funcao(inverte_string)
+# invertida = inverte_string_checando_parametro('123')
+# print(invertida)
+
+#decoradores com parâmetros
+def fabrica_de_decoradores(a=None, b=None, c=None):
+    def fabrica_de_funcoes(func):
+        print('Decoradora 1')
+
+        def aninhada(*args, **kwargs):
+            print('Parâmetros do decorador, ', a, b, c)
+            print('Aninhada')
+            res = func(*args, **kwargs)
+            return res
+        return aninhada
+    return fabrica_de_funcoes
+
+
+@fabrica_de_decoradores(1, 2, 3)
+def soma(x, y):
+    return x + y
+
+
+decoradora = fabrica_de_decoradores()
+multiplica = decoradora(lambda x, y: x * y)
+
+dez_mais_cinco = soma(10, 5)
+dez_vezes_cinco = multiplica(10, 5)
+print(dez_mais_cinco)
+print(dez_vezes_cinco)
