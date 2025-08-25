@@ -385,6 +385,7 @@ Requisitos:
 #             print(contadoritem, item)
 #             contadoritem += 1
 #         contadoritem = 0
+# duplicados()
 
 #o que era:
 # def encontra_primeiro_duplicado(lista_de_inteiros):
@@ -958,28 +959,226 @@ Requisitos:
 # print(invertida)
 
 #decoradores com parâmetros
-def fabrica_de_decoradores(a=None, b=None, c=None):
-    def fabrica_de_funcoes(func):
-        print('Decoradora 1')
+# def fabrica_de_decoradores(a=None, b=None, c=None):
+#     def fabrica_de_funcoes(func):
+#         print('Decoradora 1')
+#         def aninhada(*args, **kwargs):
+#             print('Parâmetros do decorador, ', a, b, c)
+#             print('Aninhada')
+#             res = func(*args, **kwargs)
+#             return res
+#         return aninhada
+#     return fabrica_de_funcoes
+# @fabrica_de_decoradores(1, 2, 3)
+# def soma(x, y):
+#     return x + y
+# decoradora = fabrica_de_decoradores()
+# multiplica = decoradora(lambda x, y: x * y)
+# dez_mais_cinco = soma(10, 5)
+# dez_vezes_cinco = multiplica(10, 5)
+# print(dez_mais_cinco)
+# print(dez_vezes_cinco)
 
-        def aninhada(*args, **kwargs):
-            print('Parâmetros do decorador, ', a, b, c)
-            print('Aninhada')
-            res = func(*args, **kwargs)
-            return res
-        return aninhada
-    return fabrica_de_funcoes
+# Exercício - Unir listas
+# Crie uma função zipper (como o zipper de roupas)
+# O trabalho dessa função será unir duas
+# listas na ordem.
+# Use todos os valores da menor lista.
+# Ex.:
+# ['Salvador', 'Ubatuba', 'Belo Horizonte']
+# ['BA', 'SP', 'MG', 'RJ']
+# Resultado
+# [('Salvador', 'BA'), ('Ubatuba', 'SP'), ('Belo Horizonte', 'MG')]
 
+#o que eu consegui fazer:
+# lista1 = ['Salvador', 'Ubatuba', 'Belo Horizonte']
+# lista2 = ['BA', 'SP', 'MG', 'RJ']
+# def zipper(x, y):
+#     contador1 = 0
+#     contador2 = 0
+#     for item1 in x:
+#         for item2 in y:
+#             if contador1 == contador2:
+#                 print(lista1[contador1], lista2[contador2])
+#             else:
+#                 print('diferente')
+#             contador2 =+ 1
+#         contador1 += 1
+#         print(contador1, contador2)
+# zipper(lista1, lista2)
 
-@fabrica_de_decoradores(1, 2, 3)
-def soma(x, y):
-    return x + y
+# o que era:
+# def zipper(l1, l2):
+#     intervalo = min(len(l1), len(l2))
+#     return [(l1[i], l2[i]) for i in range(intervalo)]
+# from itertools import zip_longest
+# l1 = ['Salvador', 'Ubatuba', 'Belo Horizonte']
+# l2 = ['BA', 'SP', 'MG', 'RJ']
+# print(list(zip(l1, l2)))
+# print(list(zip_longest(l1, l2, fillvalue='SEM CIDADE')))
 
+"""
+Considerando duas listas de inteiros ou floats (lista A e lista B)
+Some os valores nas listas retornando uma nova lista com os valores somados:
+Se uma lista for maior que a outra, a soma só vai considerar o tamanho da
+menor.
+Exemplo:
+lista_a     = [1, 2, 3, 4, 5, 6, 7]
+lista_b     = [1, 2, 3, 4]
+=================== resultado
+lista_soma  = [2, 4, 6, 8]
+"""
 
-decoradora = fabrica_de_decoradores()
-multiplica = decoradora(lambda x, y: x * y)
+#como eu fiz:
+# l1 = [1, 2, 3, 4, 5, 6, 7]
+# l2 = [1, 2, 3, 4, 10]
+# def zipper(l1, l2):
+#     intervalo = min(len(l1), len(l2))
+#     return [(l1[i] + l2[i]) for i in range(intervalo)]
+# print(zipper(l1, l2))
 
-dez_mais_cinco = soma(10, 5)
-dez_vezes_cinco = multiplica(10, 5)
-print(dez_mais_cinco)
-print(dez_vezes_cinco)
+#como podia ser:
+# lista_a = [10, 2, 3, 40, 5, 6, 7]
+# lista_b = [1, 2, 3, 4]
+# lista_soma = [x + y for x, y in zip(lista_a, lista_b)]
+# print(lista_soma)
+# lista_soma = []
+# for i in range(len(lista_b)):
+#     lista_soma.append(lista_a[i] + lista_b[i])
+# print(lista_soma)
+# lista_soma = []
+# for i, _ in enumerate(lista_b):
+#     lista_soma.append(lista_a[i] + lista_b[i])
+# print(lista_soma)
+
+# count é um iterador sem fim (itertools)
+# from itertools import count
+# c1 = count(step=8, start=8)
+# r1 = range(8, 100, 8)
+# print('c1', hasattr(c1, '__iter__'))
+# print('c1', hasattr(c1, '__next__'))
+# print('r1', hasattr(r1, '__iter__'))
+# print('r1', hasattr(r1, '__next__'))
+# print('count')
+# for i in c1:
+#     if i >= 100:
+#         break
+
+#     print(i)
+# print()
+# print('range')
+# for i in r1:
+#     print(i)
+
+# Combinations, Permutations e Product - Itertools
+# Combinação - Ordem não importa - iterável + tamanho do grupo
+# Permutação - Ordem importa
+# Produto - Ordem importa e repete valores únicos
+# from itertools import combinations, permutations, product
+# def print_iter(iterator):
+#     print(*list(iterator), sep='\n')
+#     print()
+# pessoas = [
+#     'João', 'Joana', 'Luiz', 'Letícia',
+# ]
+# camisetas = [
+#     ['preta', 'branca'],
+#     ['p', 'm', 'g'],
+#     ['masculino', 'feminino', 'unisex'],
+#     ['algodão', 'poliéster']
+# ]
+# print_iter(combinations(pessoas, 2))
+# print_iter(permutations(pessoas, 2))
+# print_iter(product(*camisetas))
+
+# groupby - agrupando valores (itertools)
+# from itertools import groupby
+# alunos = [
+#     {'nome': 'Luiz', 'nota': 'A'},
+#     {'nome': 'Letícia', 'nota': 'B'},
+#     {'nome': 'Fabrício', 'nota': 'A'},
+#     {'nome': 'Rosemary', 'nota': 'C'},
+#     {'nome': 'Joana', 'nota': 'D'},
+#     {'nome': 'João', 'nota': 'A'},
+#     {'nome': 'Eduardo', 'nota': 'B'},
+#     {'nome': 'André', 'nota': 'A'},
+#     {'nome': 'Anderson', 'nota': 'C'},
+# ]
+# def ordena(aluno):
+#     return aluno['nota']
+# alunos_agrupados = sorted(alunos, key=ordena)
+# grupos = groupby(alunos_agrupados, key=ordena)
+# for chave, grupo in grupos:
+#     print(chave)
+#     for aluno in grupo:
+#         print(aluno)
+
+# map, partial, GeneratorType e esgotamento de Iterators
+# from functools import partial
+# from types import GeneratorType
+# # map - para mapear dados
+# def print_iter(iterator):
+#     print(*list(iterator), sep='\n')
+#     print()
+# produtos = [
+#     {'nome': 'Produto 5', 'preco': 10.00},
+#     {'nome': 'Produto 1', 'preco': 22.32},
+#     {'nome': 'Produto 3', 'preco': 10.11},
+#     {'nome': 'Produto 2', 'preco': 105.87},
+#     {'nome': 'Produto 4', 'preco': 69.90},
+# ]
+# def aumentar_porcentagem(valor, porcentagem):
+#     return round(valor * porcentagem, 2)
+# aumentar_dez_porcento = partial(
+#     aumentar_porcentagem,
+#     porcentagem=1.1
+# )
+# # novos_produtos = [
+# #     {**p,
+# #         'preco': aumentar_dez_porcento(p['preco'])}
+# #     for p in produtos
+# # ]
+# def muda_preco_de_produtos(produto):
+#     return {
+#         **produto,
+#         'preco': aumentar_dez_porcento(
+#             produto['preco']
+#         )
+#     }
+# novos_produtos = list(map(
+#     muda_preco_de_produtos,
+#     produtos
+# ))
+# print_iter(produtos)
+# print_iter(novos_produtos)
+# print(
+#     list(map(
+#         lambda x: x * 3,
+#         [1, 2, 3, 4]
+#     ))
+# )
+
+# filter é um filtro funcional
+# def print_iter(iterator):
+#     print(*list(iterator), sep='\n')
+#     print()
+# produtos = [
+#     {'nome': 'Produto 5', 'preco': 10.00},
+#     {'nome': 'Produto 1', 'preco': 22.32},
+#     {'nome': 'Produto 3', 'preco': 10.11},
+#     {'nome': 'Produto 2', 'preco': 105.87},
+#     {'nome': 'Produto 4', 'preco': 69.90},
+# ]
+# def filtrar_preco(produto):
+#     return produto['preco'] > 100
+# # novos_produtos = [
+# #     p for p in produtos
+# #     if p['preco'] > 100
+# # ]
+# novos_produtos = filter(
+#     # lambda produto: produto['preco'] > 100,
+#     filtrar_preco,
+#     produtos
+# )
+# print_iter(produtos)
+# print_iter(novos_produtos)
