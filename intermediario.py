@@ -1182,3 +1182,70 @@ lista_soma  = [2, 4, 6, 8]
 # )
 # print_iter(produtos)
 # print_iter(novos_produtos)
+
+# reduce - faz a redução de um iterável em um valor
+# from functools import reduce
+# produtos = [
+#     {'nome': 'Produto 5', 'preco': 10},
+#     {'nome': 'Produto 1', 'preco': 22},
+#     {'nome': 'Produto 3', 'preco': 2},
+#     {'nome': 'Produto 2', 'preco': 6},
+#     {'nome': 'Produto 4', 'preco': 4},
+# ]
+# def funcao_do_reduce(acumulador, produto):
+#     print('acumulador', acumulador)
+#     print('produto', produto)
+#     print()
+#     return acumulador + produto['preco']
+# total = reduce(
+#     lambda ac, p: ac + p['preco'],
+#     produtos,
+#     0
+# )
+# print('Total é', total)
+# total = 0
+# for p in produtos:
+#     total += p['preco']
+# print(total)
+# print(sum([p['preco'] for p in produtos]))
+
+#recursividade 
+# def recursiva(inicio=0, fim=4):
+#     print(inicio, fim)
+#     # Caso base
+#     if inicio >= fim:
+#         return fim
+#     # Caso recursivo
+#     # contar até chegar ao final
+#     inicio += 1
+#     return recursiva(inicio, fim)
+# print(recursiva())
+
+# def fatorial(n):
+#     if n <= 1:
+#         return 1
+#     return n * fatorial(n - 1)
+# print(fatorial(3))
+
+# ambientes virtuais
+# python -m venv venv
+# .\venv\bin\Activate.ps1
+# deactivate
+# git add .
+# git commit -m "testando pelo notebook"
+# git push
+# pip - instalando pacotes e bibliotecas
+# Instalar última versão:
+# pip install nome_pacote
+# Instalar versão precisa
+# (tem outras formas também não mencionadas)
+# pip install nome_pacote==0.0.0
+# Desinstalar pacote
+# pip uninstall nome_pacote
+# Congelar (ver pacotes)
+# pip freeze
+
+# Criando e usando um requirements.txt
+# pip freeze > requirements.txt
+# Instalando tudo do requirements.txt
+# pip install -r requirements.txt
