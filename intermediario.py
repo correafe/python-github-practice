@@ -1249,3 +1249,388 @@ lista_soma  = [2, 4, 6, 8]
 # pip freeze > requirements.txt
 # Instalando tudo do requirements.txt
 # pip install -r requirements.txt
+
+# Criando arquivos com Python + Context Manager with
+# with open (context manager) e métodos úteis do TextIOWrapper
+# Usamos a função open para abrir
+# um arquivo em Python (ele pode ou não existir)
+# Modos:
+# r (leitura), w (escrita), x (para criação)
+# a (escreve ao final), b (binário)
+# t (modo texto), + (leitura e escrita)
+# Context manager - with (abre e fecha)
+# Métodos úteis
+# write, read (escrever e ler)
+# writelines (escrever várias linhas)
+# seek (move o cursor)
+# readline (ler linha)
+# readlines (ler linhas)
+# Vamos falar mais sobre o módulo os, mas:
+# os.remove ou unlink - apaga o arquivo
+# os.rename - troca o nome ou move o arquivo
+# Vamos falar mais sobre o módulo json, mas:
+# json.dump = Gera um arquivo json
+# json.load
+# caminho_arquivo = 'teste.txt'
+# # arquivo = open(caminho_arquivo, 'w')
+# # #
+# # arquivo.close()
+# with open(caminho_arquivo, 'w') as arquivo:
+#     print('Olá mundo')
+#     print('Arquivo vai ser fechado')
+# import os
+# caminho_arquivo = 'teste.txt'
+# with open(caminho_arquivo, 'w+', encoding='utf8') as arquivo:
+#     arquivo.write('Atenção\n')
+#     arquivo.write('Linha 1\n')
+#     arquivo.write('Linha 2\n')
+#     arquivo.writelines(
+#         ('Linha 3\n', 'Linha 4\n')
+#     )
+#     arquivo.seek(0, 0)
+#     print(arquivo.read())
+#     print('Lendo')
+#     arquivo.seek(0, 0)
+#     print(arquivo.readline(), end='')
+#     print(arquivo.readline().strip())
+#     print(arquivo.readline().strip())
+
+#     print('READLINES')
+#     arquivo.seek(0, 0)
+#     for linha in arquivo.readlines():
+#         print(linha.strip())
+# print('#' * 10)
+# with open(caminho_arquivo, 'r') as arquivo:
+#     print(arquivo.read())
+# os.remove(caminho_arquivo) # ou unlink
+# os.rename(caminho_arquivo, 'aula116-2.txt')
+
+#json
+# import json
+# pessoa = {
+#     'nome': 'Luiz Otávio 2',
+#     'sobrenome': 'Miranda',
+#     'enderecos': [
+#         {'rua': 'R1', 'numero': 32},
+#         {'rua': 'R2', 'numero': 55},
+#     ],
+#     'altura': 1.8,
+#     'numeros_preferidos': (2, 4, 6, 8, 10),
+#     'dev': True,
+#     'nada': None,
+# }
+# with open('testejson.json', 'w', encoding='utf8') as arquivo:
+#     json.dump(
+#         pessoa,
+#         arquivo,
+#         ensure_ascii=False,
+#         indent=2,
+#     )
+# with open('testejson.json', 'r', encoding='utf8') as arquivo:
+#     pessoa = json.load(arquivo)
+#     # print(pessoa)
+#     # print(type(pessoa))
+#     print(pessoa['nome'])
+
+# Problema dos parâmetros mutáveis em funções Python
+# def adiciona_clientes(nome, lista=None):
+#     if lista is None:
+#         lista = []
+#     lista.append(nome)
+#     return lista
+# cliente1 = adiciona_clientes('luiz')
+# adiciona_clientes('Joana', cliente1)
+# adiciona_clientes('Fernando', cliente1)
+# cliente1.append('Edu')
+# cliente2 = adiciona_clientes('Helena')
+# adiciona_clientes('Maria', cliente2)
+# cliente3 = adiciona_clientes('Moreira')
+# adiciona_clientes('Vivi', cliente3)
+# print(cliente1)
+# print(cliente2)
+# print(cliente3)
+
+# Exercício - Lista de tarefas com desfazer e refazer
+# todo = [] -> lista de tarefas
+# todo = ['fazer café'] -> Adicionar fazer café
+# todo = ['fazer café', 'caminhar'] -> Adicionar caminhar
+# desfazer = ['fazer café',] -> Refazer ['caminhar']
+# desfazer = [] -> Refazer ['caminhar', 'fazer café']
+# refazer = todo ['fazer café']
+# refazer = todo ['fazer café', 'caminhar']
+
+
+# while True:
+#     print('comandos: listar, refazer, desfazer')
+#     resposta = input('digite uma tarefa ou um comando: ')
+#     resposta1 = adicionaitens(resposta)
+#     adicionaitens(resposta, resposta1)
+#     print(resposta1)
+#     # cliente1 = adiciona_clientes('luiz')
+#     # adiciona_clientes('Joana', cliente1)
+
+#o que eu fiz:
+# def adicionaitens(item, lista = []):
+#     if lista is None:
+#         lista = []
+#     lista.append(item)
+#     return lista
+# while True:
+#     print('comandos: listar, refazer, desfazer')
+#     item = input('digite uma tarefa ou um comando: ')
+
+#     if item == 'listar':
+#         if item1 == []:
+#             print('não há itens')
+#         print(item1)
+#     elif item == 'refazer':
+#         print(item)
+#     elif item == 'desfazer':
+#         print(item1)
+#     elif item1 == []:
+#         print('não há itens')
+#     else:
+#         item1 = adicionaitens(item)
+#         print(item1)
+
+#o que era:
+# import os
+# def listar(tarefas):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para listar')
+#         return
+
+#     print('Tarefas:')
+#     for tarefa in tarefas:
+#         print(f'\t{tarefa}')
+#     print()
+
+
+# def desfazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para desfazer')
+#         return
+
+#     tarefa = tarefas.pop()
+#     print(f'{tarefa=} removida da lista de tarefas.')
+#     tarefas_refazer.append(tarefa)
+#     print()
+
+
+# def refazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas_refazer:
+#         print('Nenhuma tarefa para refazer')
+#         return
+
+#     tarefa = tarefas_refazer.pop()
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+
+
+# def adicionar(tarefa, tarefas):
+#     print()
+#     tarefa = tarefa.strip()
+#     if not tarefa:
+#         print('Você não digitou uma tarefa.')
+#         return
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+
+# tarefas = []
+# tarefas_refazer = []
+
+# while True:
+#     print('Comandos: listar, desfazer e refazer')
+#     tarefa = input('Digite uma tarefa ou comando: ')
+
+#     if tarefa == 'listar':
+#         listar(tarefas)
+#         continue
+#     elif tarefa == 'desfazer':
+#         desfazer(tarefas, tarefas_refazer)
+#         listar(tarefas)
+#         continue
+#     elif tarefa == 'refazer':
+#         refazer(tarefas, tarefas_refazer)
+#         listar(tarefas)
+#         continue
+#     elif tarefa == 'clear':
+#         os.system('clear')
+#         continue
+#     else:
+#         adicionar(tarefa, tarefas)
+#         listar(tarefas)
+#         continue
+
+#outra forma:
+# import os
+
+# def listar(tarefas):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para listar')
+#         return
+
+#     print('Tarefas:')
+#     for tarefa in tarefas:
+#         print(f'\t{tarefa}')
+#     print()
+
+# def desfazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para desfazer')
+#         return
+
+#     tarefa = tarefas.pop()
+#     print(f'{tarefa=} removida da lista de tarefas.')
+#     tarefas_refazer.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# def refazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas_refazer:
+#         print('Nenhuma tarefa para refazer')
+#         return
+
+#     tarefa = tarefas_refazer.pop()
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# def adicionar(tarefa, tarefas):
+#     print()
+#     tarefa = tarefa.strip()
+#     if not tarefa:
+#         print('Você não digitou uma tarefa.')
+#         return
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# tarefas = []
+# tarefas_refazer = []
+
+# while True:
+#     print('Comandos: listar, desfazer e refazer')
+#     tarefa = input('Digite uma tarefa ou comando: ')
+
+#     comandos = {
+#         'listar': lambda: listar(tarefas),
+#         'desfazer': lambda: desfazer(tarefas, tarefas_refazer),
+#         'refazer': lambda: refazer(tarefas, tarefas_refazer),
+#         'clear': lambda: os.system('clear'),
+#         'adicionar': lambda: adicionar(tarefa, tarefas),
+#     }
+#     comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else \
+#         comandos['adicionar']
+#     comando()
+
+#outra forma:
+# import json
+# import os
+
+# def listar(tarefas):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para listar')
+#         return
+
+#     print('Tarefas:')
+#     for tarefa in tarefas:
+#         print(f'\t{tarefa}')
+#     print()
+
+# def desfazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas:
+#         print('Nenhuma tarefa para desfazer')
+#         return
+
+#     tarefa = tarefas.pop()
+#     print(f'{tarefa=} removida da lista de tarefas.')
+#     tarefas_refazer.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# def refazer(tarefas, tarefas_refazer):
+#     print()
+#     if not tarefas_refazer:
+#         print('Nenhuma tarefa para refazer')
+#         return
+
+#     tarefa = tarefas_refazer.pop()
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# def adicionar(tarefa, tarefas):
+#     print()
+#     tarefa = tarefa.strip()
+#     if not tarefa:
+#         print('Você não digitou uma tarefa.')
+#         return
+#     print(f'{tarefa=} adicionada na lista de tarefas.')
+#     tarefas.append(tarefa)
+#     print()
+#     listar(tarefas)
+
+# def ler(tarefas, caminho_arquivo):
+#     dados = []
+#     try:
+#         with open(caminho_arquivo, 'r', encoding='utf8') as arquivo:
+#             dados = json.load(arquivo)
+#     except FileNotFoundError:
+#         print('Arquivo não existe')
+#         salvar(tarefas, caminho_arquivo)
+#     return dados
+
+# def salvar(tarefas, caminho_arquivo):
+#     dados = tarefas
+#     with open(caminho_arquivo, 'w', encoding='utf8') as arquivo:
+#         dados = json.dump(tarefas, arquivo, indent=2, ensure_ascii=False)
+#     return dados
+
+# CAMINHO_ARQUIVO = 'aula119.json'
+# tarefas = ler([], CAMINHO_ARQUIVO)
+# tarefas_refazer = []
+
+# while True:
+#     print('Comandos: listar, desfazer e refazer')
+#     tarefa = input('Digite uma tarefa ou comando: ')
+
+#     comandos = {
+#         'listar': lambda: listar(tarefas),
+#         'desfazer': lambda: desfazer(tarefas, tarefas_refazer),
+#         'refazer': lambda: refazer(tarefas, tarefas_refazer),
+#         'clear': lambda: os.system('clear'),
+#         'adicionar': lambda: adicionar(tarefa, tarefas),
+#     }
+#     comando = comandos.get(tarefa) if comandos.get(tarefa) is not None else \
+#         comandos['adicionar']
+#     comando()
+#     salvar(tarefas, CAMINHO_ARQUIVO)
+
+# Positional-Only Parameters (/) e Keyword-Only Arguments (*)
+# *args (ilimitado de argumentos posicionais)
+# **kwargs (ilimitado de argumentos nomeados)
+# 🟢 Positional-only Parameters (/) - Tudo antes da barra deve
+# ser ❗️APENAS❗️ posicional.
+# PEP 570 – Python Positional-Only Parameters
+# https://peps.python.org/pep-0570/
+# 🟢 Keyword-Only Arguments (*) - * sozinho ❗️NÃO SUGA❗️ valores.
+# PEP 3102 – Keyword-Only Arguments
+# https://peps.python.org/pep-3102/
+# def soma(a, b, /, *, c, **kwargs):
+#     print(kwargs)
+#     print(a + b + c)
+# soma(1, 2, c=3, nome='teste')
